@@ -1,0 +1,224 @@
+{
+  "snapshot_date": "2026-11-16",
+  "municipalities": 5570,
+  "geography": "Unidades de nível municipal do IBGE em 2022, incluindo Brasília e Fernando de Noronha.",
+  "encoding": "UTF-8",
+  "delimiter": ",",
+  "decimal_separator": ".",
+  "join_key": "codigo_ibge",
+  "columns": {
+    "codigo_ibge": {
+      "type": "texto",
+      "length": 7
+    },
+    "municipio": {
+      "type": "texto",
+      "source": "IBGE/SIDRA"
+    },
+    "uf": {
+      "type": "texto"
+    },
+    "populacao": {
+      "year": 2022,
+      "unit": "pessoas",
+      "table": 4714,
+      "variable": 93
+    },
+    "pib_mil_reais": {
+      "year": 2022,
+      "unit": "mil reais correntes",
+      "table": 5938,
+      "variable": 37
+    },
+    "ideb_anos_iniciais": {
+      "year": 2023,
+      "network": "Pública",
+      "scale": [
+        0,
+        10
+      ]
+    },
+    "ideb_anos_finais": {
+      "year": 2023,
+      "network": "Pública",
+      "scale": [
+        0,
+        10
+      ]
+    }
+  },
+  "sources": [
+    {
+      "file": "populacao-2022.json",
+      "url": "https://apisidra.ibge.gov.br/values/t/4714/n6/all/v/93/p/2022?formato=json",
+      "bytes": 973522,
+      "sha256": "bc464f32f97bbedfb5c986e58be0d2cdeb759b014fcbeb0de2facd62e34a50be"
+    },
+    {
+      "file": "pib-2022.json",
+      "url": "https://apisidra.ibge.gov.br/values/t/5938/n6/all/v/37/p/2022?formato=json",
+      "bytes": 1103997,
+      "sha256": "1a2150a6a554981a42e1e0168a7836c65c0fbeb3c9bca62d68d72f965bf447fb"
+    },
+    {
+      "file": "ideb-iniciais-2025.zip",
+      "url": "https://download.inep.gov.br/ideb/resultados/divulgacao_anos_iniciais_municipios_2025.zip",
+      "bytes": 25308289,
+      "sha256": "89100286327ab07a4b1318ba51974d62da90af334f663bedf6374cb67298a3e7"
+    },
+    {
+      "file": "ideb-finais-2025.zip",
+      "url": "https://download.inep.gov.br/ideb/resultados/divulgacao_anos_finais_municipios_2025.zip",
+      "bytes": 24381009,
+      "sha256": "5f81ae18d33567608f10551d4f563a6879afc0182ff28cfd81e913958a30a6b3"
+    }
+  ],
+  "inep_extraction": {
+    "iniciais": {
+      "member": "divulgacao_anos_iniciais_municipios_2025/divulgacao_anos_iniciais_municipios_2025.xlsx",
+      "sheet": "IDEB_AI_MUNICÍPIOS",
+      "header_row": 7,
+      "column_1_based": 124,
+      "column_label": "IDEB\n2023\n(N x P)",
+      "network": "Pública",
+      "year": 2023
+    },
+    "finais": {
+      "member": "divulgacao_anos_finais_municipios_2025/divulgacao_anos_finais_municipios_2025.xlsx",
+      "sheet": "IDEB_AF_MUNICÍPIOS",
+      "header_row": 7,
+      "column_1_based": 113,
+      "column_label": "IDEB\n2023\n(N x P)",
+      "network": "Pública",
+      "year": 2023
+    }
+  },
+  "missing_ideb": {
+    "iniciais": 140,
+    "finais": 188
+  },
+  "population_total": 203080756,
+  "csv_sha256": "1e1c8b3d71a12daf55dc2db93b04349d9e9a77ba03afe4e7f20f7aadcd21e8f5",
+  "homonymous_names": 232,
+  "homonym_example": [
+    {
+      "codigo_ibge": "2201903",
+      "uf": "PI"
+    },
+    {
+      "codigo_ibge": "2401701",
+      "uf": "RN"
+    },
+    {
+      "codigo_ibge": "2502201",
+      "uf": "PB"
+    },
+    {
+      "codigo_ibge": "4202537",
+      "uf": "SC"
+    },
+    {
+      "codigo_ibge": "4302303",
+      "uf": "RS"
+    }
+  ],
+  "top10_population": [
+    {
+      "codigo_ibge": "3550308",
+      "municipio": "São Paulo",
+      "uf": "SP",
+      "populacao": 11451999,
+      "pib_mil_reais": "945946483",
+      "ideb_anos_iniciais": "5.9",
+      "ideb_anos_finais": "4.8"
+    },
+    {
+      "codigo_ibge": "3304557",
+      "municipio": "Rio de Janeiro",
+      "uf": "RJ",
+      "populacao": 6211223,
+      "pib_mil_reais": "380381515",
+      "ideb_anos_iniciais": "6",
+      "ideb_anos_finais": "5.2"
+    },
+    {
+      "codigo_ibge": "5300108",
+      "municipio": "Brasília",
+      "uf": "DF",
+      "populacao": 2817381,
+      "pib_mil_reais": "328789563",
+      "ideb_anos_iniciais": "5.9",
+      "ideb_anos_finais": "4.6"
+    },
+    {
+      "codigo_ibge": "2304400",
+      "municipio": "Fortaleza",
+      "uf": "CE",
+      "populacao": 2428708,
+      "pib_mil_reais": "81362333",
+      "ideb_anos_iniciais": "6",
+      "ideb_anos_finais": "5.2"
+    },
+    {
+      "codigo_ibge": "2927408",
+      "municipio": "Salvador",
+      "uf": "BA",
+      "populacao": 2417678,
+      "pib_mil_reais": "68764218",
+      "ideb_anos_iniciais": "5.3",
+      "ideb_anos_finais": "3.9"
+    },
+    {
+      "codigo_ibge": "3106200",
+      "municipio": "Belo Horizonte",
+      "uf": "MG",
+      "populacao": 2315560,
+      "pib_mil_reais": "115381698",
+      "ideb_anos_iniciais": "5.9",
+      "ideb_anos_finais": "4.5"
+    },
+    {
+      "codigo_ibge": "1302603",
+      "municipio": "Manaus",
+      "uf": "AM",
+      "populacao": 2063689,
+      "pib_mil_reais": "113465435",
+      "ideb_anos_iniciais": "6.2",
+      "ideb_anos_finais": "5.1"
+    },
+    {
+      "codigo_ibge": "4106902",
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "populacao": 1773718,
+      "pib_mil_reais": "111760270",
+      "ideb_anos_iniciais": "6.3",
+      "ideb_anos_finais": "5.4"
+    },
+    {
+      "codigo_ibge": "2611606",
+      "municipio": "Recife",
+      "uf": "PE",
+      "populacao": 1488920,
+      "pib_mil_reais": "60078764",
+      "ideb_anos_iniciais": "5.5",
+      "ideb_anos_finais": "4.9"
+    },
+    {
+      "codigo_ibge": "5208707",
+      "municipio": "Goiânia",
+      "uf": "GO",
+      "populacao": 1437366,
+      "pib_mil_reais": "66273858",
+      "ideb_anos_iniciais": "6.5",
+      "ideb_anos_finais": "5.6"
+    }
+  ],
+  "limitations": [
+    "PIB e população são de 2022; IDEB é de 2023, extraído das planilhas de divulgação de 2025.",
+    "Campo vazio de IDEB não é zero; a origem da ausência está em ausencias_ideb.csv.",
+    "PIB per capita a calcular no curso = pib_mil_reais * 1000 / populacao.",
+    "O cálculo didático usa o recorte populacional desta extração; não pressupõe identidade com revisões de outros painéis.",
+    "A associação entre PIB e IDEB não demonstra causalidade nem mede renda familiar."
+  ]
+}
