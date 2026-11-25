@@ -10,7 +10,7 @@ Materiais para acompanhar as atividades do curso do IDP.
 2. Localize a pasta `projeto-municipios`, que contém `LEIA-ME.txt` e a pasta `dados`.
 3. Abra essa pasta no aplicativo do agente e acompanhe a aula.
 
-O pacote inicial contém os dados e o tutor, sem o gráfico pronto. Você criará `index.html` na atividade. Para esses primeiros blocos, use o aplicativo do agente já instalado, uma conta conectada e um navegador. Python será instalado no módulo 4.
+O pacote inicial contém os dados, o tutor e a skill do painel no Power BI, sem o gráfico pronto. Você criará `index.html` na atividade. Para esses primeiros blocos, use o aplicativo do agente já instalado, uma conta conectada e um navegador. Python será instalado no módulo 4.
 
 Consulte o [guia dos blocos 3.4 a 3.7](guias/modulo-03.md) para os pedidos ao agente e os checkpoints.
 
@@ -23,11 +23,21 @@ Consulte o [guia dos blocos 3.4 a 3.7](guias/modulo-03.md) para os pedidos ao ag
 
 O segundo pacote contém uma página preparada pelo professor para retomada. O objetivo da atividade do módulo 3 continua sendo produzir sua própria página com o agente.
 
-## Dados e tutor
+## Dados, tutor e painel
 
 A base reúne as 5.570 unidades de nível municipal do IBGE em 2022, incluindo Brasília e Fernando de Noronha. População e PIB são de 2022, e o IDEB da rede pública é de 2023. Campos vazios de IDEB não significam zero. Consulte as [fontes, unidades e limitações](projeto-base/dados/LEIA-ME.md).
 
 As pastas `.claude` e `.agents` contêm o tutor, apresentado no módulo 6, e devem ser mantidas na pasta extraída.
+
+## Painel no Power BI
+
+As mesmas pastas trazem a skill `painel-powerbi`, usada no módulo 11. Você pede o painel ao agente; ele escreve uma especificação em `powerbi/painel.json` e um script gera o projeto do Power BI (`.pbip`) por código, sem arrastar visuais.
+
+- [Instruções da skill](projeto-base/.claude/skills/painel-powerbi/SKILL.md)
+- [Formato da especificação](projeto-base/.claude/skills/painel-powerbi/especificacao.md)
+- [Exemplo com os dados do curso](projeto-base/.claude/skills/painel-powerbi/exemplos/municipios.json)
+
+O script usa apenas o Python, instalado no módulo 4. Para abrir o painel, é preciso o Power BI Desktop, que só roda no Windows. No Mac, você gera o projeto e confere os números, mas não abre o painel.
 
 ## Organização
 

@@ -22,6 +22,8 @@ AS PASTAS DO TUTOR
 .claude e .agents contêm o tutor para as ferramentas usadas no curso.
 Essas pastas podem ficar ocultas no gerenciador de arquivos.
 O tutor será apresentado no módulo 6.
+As mesmas pastas trazem a skill painel-powerbi, que gera um painel do
+Power BI a partir dos dados. Ela é usada no módulo 11.
 
 REQUISITOS DESTE MÓDULO
 Aplicativo do agente instalado e conectado, acesso à internet para conversar com
