@@ -84,12 +84,34 @@ class PublishedMaterials(unittest.TestCase):
                 if value:
                     self.assertTrue(0 <= float(value) <= 10)
 
-    def test_tutor_copies_are_identical_and_starting_states_are_correct(self):
+    def test_skill_copies_are_identical(self):
+        for skill in ["tutor", "painel-powerbi"]:
+            claude = BASE / ".claude/skills" / skill
+            agents = BASE / ".agents/skills" / skill
+            files = lambda root: {p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file()}
+            self.assertTrue((claude / "SKILL.md").is_file(), skill)
+            self.assertEqual(files(claude), files(agents), skill)
+            for name in files(claude):
+                self.assertEqual((claude / name).read_bytes(), (agents / name).read_bytes(), name)
+
+    def test_powerbi_example_generates_project_from_archive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with zipfile.ZipFile(ROOT / "pacotes" / PACKAGES[0]) as archive:
+                archive.extractall(directory)
+            project = Path(directory) / "projeto-municipios"
+            skill = project / ".claude/skills/painel-powerbi"
+            spec = importlib.util.spec_from_file_location("gerar_pbip", skill / "scripts/gerar_pbip.py")
+            generator = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(generator)
+            (project / "powerbi").mkdir()
+            target = project / "powerbi/painel.json"
+            target.write_bytes((skill / "exemplos/municipios.json").read_bytes())
+            result = generator.generate(target)
+            self.assertEqual(result["linhas_no_csv"], 5570)
+            self.assertTrue(any((project / "powerbi/pbip").glob("*.pbip")))
+
+    def test_tutor_starting_states_are_correct(self):
         claude = BASE / ".claude/skills/tutor"
-        agents = BASE / ".agents/skills/tutor"
-        for path in claude.rglob("*"):
-            if path.is_file():
-                self.assertEqual(path.read_bytes(), (agents / path.relative_to(claude)).read_bytes())
         spec = importlib.util.spec_from_file_location("tutor", claude / "scripts/verificar.py")
         tutor = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(tutor)

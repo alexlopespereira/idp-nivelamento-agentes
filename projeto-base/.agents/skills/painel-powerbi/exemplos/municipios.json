@@ -1,0 +1,55 @@
+{
+  "nome": "PainelMunicipios",
+  "titulo": "Municípios: PIB por habitante e IDEB",
+  "tabela": "Municipios",
+  "csv": "../dados/municipios.csv",
+  "separador": ",",
+  "colunas": {
+    "codigo_ibge": "texto",
+    "municipio": "texto",
+    "uf": "texto",
+    "populacao": "inteiro",
+    "pib_mil_reais": "inteiro",
+    "ideb_anos_iniciais": "decimal",
+    "ideb_anos_finais": "decimal"
+  },
+  "colunas_calculadas": [
+    {"nome": "municipio_uf", "dax": "Municipios[municipio] & \" - \" & Municipios[uf]", "tipo": "texto"}
+  ],
+  "medidas": [
+    {"nome": "Municípios", "dax": "COUNTROWS(Municipios)", "formato": "#,0"},
+    {"nome": "População", "dax": "SUM(Municipios[populacao])", "formato": "#,0"},
+    {"nome": "PIB por habitante (R$)", "dax": "DIVIDE(SUM(Municipios[pib_mil_reais]) * 1000, SUM(Municipios[populacao]))", "formato": "#,0"},
+    {"nome": "IDEB anos iniciais", "dax": "AVERAGE(Municipios[ideb_anos_iniciais])", "formato": "0.0"},
+    {"nome": "IDEB anos finais", "dax": "AVERAGE(Municipios[ideb_anos_finais])", "formato": "0.0"},
+    {"nome": "Sem IDEB anos iniciais", "dax": "COUNTROWS(FILTER(Municipios, ISBLANK(Municipios[ideb_anos_iniciais])))", "formato": "#,0"}
+  ],
+  "paginas": [
+    {
+      "nome": "Visão geral",
+      "titulo": "Municípios: PIB por habitante e IDEB",
+      "subtitulo": "Municípios com mais produção por habitante têm IDEB mais alto? PIB e população de 2022; IDEB de 2023, rede pública.",
+      "nota": "Fontes: IBGE/SIDRA (população e PIB, 2022) e INEP (IDEB 2023, rede pública). IDEB vazio é ausência de dado, não zero. O IDEB médio é a média simples dos municípios. PIB por habitante mede produção, não renda, e a relação com o IDEB não prova causa.",
+      "visuais": [
+        {"tipo": "cartao", "titulo": "Municípios no recorte", "medida": "Municípios", "posicao": [24, 104, 236, 96]},
+        {"tipo": "cartao", "titulo": "PIB por habitante (R$)", "medida": "PIB por habitante (R$)", "posicao": [273, 104, 236, 96]},
+        {"tipo": "cartao", "titulo": "IDEB anos iniciais (média)", "medida": "IDEB anos iniciais", "posicao": [522, 104, 236, 96]},
+        {"tipo": "cartao", "titulo": "IDEB anos finais (média)", "medida": "IDEB anos finais", "posicao": [771, 104, 236, 96]},
+        {"tipo": "segmentacao", "titulo": "UF", "campo": "uf", "posicao": [1020, 104, 236, 96]},
+        {"tipo": "dispersao", "titulo": "PIB por habitante e IDEB dos anos iniciais", "subtitulo": "Cada ponto é um município. Eixo horizontal em escala logarítmica.", "detalhe": "municipio_uf", "x": "PIB por habitante (R$)", "y": "IDEB anos iniciais", "escala_log": true, "posicao": [24, 212, 740, 452]},
+        {"tipo": "barras", "titulo": "IDEB dos anos iniciais por UF", "subtitulo": "Média simples dos municípios de cada UF", "categoria": "uf", "valor": "IDEB anos iniciais", "posicao": [780, 212, 476, 452]}
+      ]
+    },
+    {
+      "nome": "Por UF",
+      "titulo": "Comparação entre as UFs",
+      "subtitulo": "Selecione uma UF para ver os municípios com maior PIB por habitante.",
+      "nota": "Municípios com o mesmo nome aparecem com a sigla da UF. Sem IDEB anos iniciais conta os municípios sem valor na extração do INEP.",
+      "visuais": [
+        {"tipo": "segmentacao", "titulo": "UF", "campo": "uf", "posicao": [24, 104, 300, 80]},
+        {"tipo": "barras", "titulo": "15 municípios com maior PIB por habitante (R$)", "categoria": "municipio_uf", "valor": "PIB por habitante (R$)", "top": 15, "posicao": [24, 196, 540, 468]},
+        {"tipo": "tabela", "titulo": "Indicadores por UF", "campos": ["uf", "Municípios", "População", "PIB por habitante (R$)", "IDEB anos iniciais", "IDEB anos finais", "Sem IDEB anos iniciais"], "posicao": [580, 104, 676, 560]}
+      ]
+    }
+  ]
+}
